@@ -25,7 +25,7 @@ fi
 
 JAVA_VERSION=$(${JAVA} -version 2>&1 | sed -En 's/.* version "([0-9]+).*$/\1/p')
 if [ "$JAVA_VERSION" -ge "9" ]; then
-    JDK_OPTS="\
+    JAVA_OPTS="$JAVA_OPTS \
         --add-modules java.se \
         --add-exports java.base/jdk.internal.ref=ALL-UNNAMED \
         --add-opens java.base/java.lang=ALL-UNNAMED \
@@ -35,5 +35,7 @@ if [ "$JAVA_VERSION" -ge "9" ]; then
     "
 fi
 
-"$JAVA" -Djava.util.logging.config.file=logging.properties $JDK_OPTS -jar target/rest-in-pease.jar
+JAVA_OPTS="$JAVA_OPTS -Djava.util.logging.config.file=logging.properties"
+
+"$JAVA" $JAVA_OPTS -jar target/rest-in-pease.jar
 
