@@ -1,0 +1,8 @@
+#\n# ******************************************************************\n# *****   DEMO - REST in peace in simple configuration          ****\n# ******************************************************************\n#\n# >>>> IMap.put (POST/PUT) without authentication (401 Unauthorized)\n\ncurl --data myvalue -v http://127.0.0.1:8080/map/mymap/mykey
+#\n# >>>> Use wrong password (401 Unauthorized)\n\ncurl --data myvalue --user test:1234 -v http://127.0.0.1:8080/map/mymap/mykey
+#\n# >>>> Use correct credentials, without permissions (403 Forbidden)\n\ncurl --data myvalue --user jduke:theduke -v http://127.0.0.1:8080/map/mymap/mykey
+#\n# >>>> Use correct credentials, with proper permisisons (200 OK)\n\ncurl --data myvalue --user jduke:theduke -v http://127.0.0.1:8080/map/test/mykey
+#\n# >>>> Demo GET request\n\ncurl --user jduke:theduke http://127.0.0.1:8080/map/test/mykey
+#\n# >>>> Demo DELETE request\n\ncurl --user jduke:theduke -X DELETE http://127.0.0.1:8080/map/test/mykey
+#\n# >>>> Try GET again\n\ncurl --user jduke:theduke http://127.0.0.1:8080/map/test/mykey
+#\n# CLEANUP\ncp ~/demo.commands.orig ~/demo.commands
