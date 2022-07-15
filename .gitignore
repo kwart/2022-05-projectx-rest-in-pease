@@ -4,3 +4,6 @@ target/
 .project
 .settings
 dependency-reduced-pom.xml
+
+# performance test results
+results/
